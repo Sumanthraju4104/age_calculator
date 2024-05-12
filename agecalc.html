@@ -1,0 +1,62 @@
+<DOCTYPE html>
+<html>
+<head>
+<title>Age Calculator</title>
+<style>
+     body{
+       font-family:sans-serif,arial;
+       display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+       }
+      form {
+        margin:10px;
+        padding:20px;
+        border:20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius:2px;
+        background-color:rgb(129, 188, 181);
+    }
+	input{
+		border-radius: 2px;
+        background-color: antiquewhite;
+	}
+    #result{
+        border-radius: 2px;
+        background-color: rgb(111, 132, 99);
+    }
+</style>
+</head>
+<body>
+
+<form id="ageForm">
+    <br><br><label >Enter Your Date of Birth:</label><br>
+    <input type="date" id="dob" placeholder="Enter DOB" required><br><br>
+    <input type="submit" value="Calculate age">
+</form>
+
+<div id="result"></div>
+<script>
+    document.getElementById('ageForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        var dobString = document.getElementById('dob').value;
+       
+
+        var dob = new Date(dobString);
+        var today = new Date();
+        var age = today.getFullYear() - dob.getFullYear();
+        var monthDiff = today.getMonth() - dob.getMonth();
+      if(monthDiff<0||(monthDiff===0&&today.getDate()<dob.getDate())){
+      age--;
+     }
+      document.getElementById('result').innerHTML = 'Your age is: '+age;
+    });
+</script>
+
+</body>
+</html>
